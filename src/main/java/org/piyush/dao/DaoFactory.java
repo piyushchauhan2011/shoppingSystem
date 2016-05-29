@@ -28,7 +28,7 @@ public class DaoFactory {
 		if (pDao == null){
 			Properties properties = new Properties() ;
 			try{
-				properties.load(this.getClass().getResourceAsStream("/shoppingSystem.properties"));		
+				properties.load(this.getClass().getResourceAsStream("/application.properties"));		
 				String className = properties.getProperty("dao.ProductDaoName");
 				if (className!=null){
 					pDao = (ProductDao)Class.forName(className).newInstance();
@@ -53,7 +53,7 @@ public class DaoFactory {
 		if (ciDao == null){
 			Properties properties = new Properties() ;
 			try{
-				properties.load(this.getClass().getResourceAsStream("/shoppingSystem.properties"));		
+				properties.load(this.getClass().getResourceAsStream("/application.properties"));		
 				String className = properties.getProperty("dao.CartItemDaoName");
 				if (className!=null){
 					ciDao = (CartItemDao)Class.forName(className).newInstance();
@@ -78,7 +78,7 @@ public class DaoFactory {
 		if (cDao == null){
 			Properties properties = new Properties() ;
 			try{
-				properties.load(this.getClass().getResourceAsStream("/shoppingSystem.properties"));		
+				properties.load(this.getClass().getResourceAsStream("/application.properties"));		
 				String className = properties.getProperty("dao.CartDaoName");
 				if (className!=null){
 					cDao = (CartDao)Class.forName(className).newInstance();
