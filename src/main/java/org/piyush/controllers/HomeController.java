@@ -12,7 +12,7 @@ public class HomeController implements ErrorController {
 
 	private static final String PATH = "/error";
 
-	@RequestMapping("/")
+	@RequestMapping("/status")
 	public Home home(Model model) {
 		Home home = new Home("API for Shopping System", "success");
 		return home;
