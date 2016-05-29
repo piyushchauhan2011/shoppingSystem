@@ -12,7 +12,12 @@
 </head>
 
 <body ng-app="app" ng-cloak>
-	<ui-view></ui-view>
+	<div ng-cloak>
+		<md-content class="content">
+			<header-component></header-component>
+			<ui-view></ui-view>
+		</md-content>
+	</div>
 
 	<!-- Angular Material requires Angular.js Libraries -->
 	<script
@@ -34,6 +39,8 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.8/md-data-table.min.js"></script>
 	<!-- Your application bootstrap  -->
 	<script src="js/app.js"></script>
-
+	<script src="js/headerComponent.js"></script>
+	<script src="js/homeCtrl.js"></script>
+	<script src="js/adminCtrl.js"></script>
 </body>
 </html>

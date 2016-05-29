@@ -1,0 +1,34 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h2>
+			<span>Online Shopping System</span>
+		</h2>
+		<span flex></span>
+		<md-menu md-position-mode="target-right target">
+			<md-button
+				aria-label="Open user interactions menu"
+				ng-click="openMenu($mdOpenMenu, $event)"> {{ name }}
+				<md-icon
+					class="material-icons">keyboard_arrow_down</md-icon>
+			</md-button>
+			<md-menu-content width="4">
+				<md-menu-item>
+					<md-button
+						ng-click="redial($event)">
+						<md-icon class="material-icons">dialpad</md-icon>
+						Track order
+					</md-button>
+				</md-menu-item>
+
+				<md-menu-divider></md-menu-divider>
+
+				<md-menu-item>
+					<md-button ng-click="toggleNotifications()">
+						<md-icon class="material-icons">notifications</md-icon>
+						Logout
+					</md-button>
+				</md-menu-item>
+			</md-menu-content>
+		</md-menu>
+	</div>
+</md-toolbar>
