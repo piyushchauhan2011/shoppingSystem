@@ -1,2 +1,11 @@
 .toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
-  color: white; }
+	color: white;
+}
+
+.catalogue {
+	
+}
+
+.cart {
+	border-left: 1px solid #333;
+}

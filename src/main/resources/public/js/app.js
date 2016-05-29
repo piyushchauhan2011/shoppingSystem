@@ -1,6 +1,18 @@
-var app = angular.module('app', ['ngAnimate', 'ngAria', 'ngMessages', 'ui.router', 'ngMaterial']);
+var app = angular.module('app', ['ngAnimate', 'ngAria', 'ngMessages', 'ui.router', 'ngMaterial', 'md.data.table']);
 
-angular.module('app').controller('AppCtrl', function($scope, $mdDialog) {
+angular.module('app')
+	.config(function($stateProvider, $urlRouterProvider) {
+		$urlRouterProvider.otherwise('/');
+		
+		$stateProvider
+			.state('home', {
+				url: '/',
+				templateUrl: 'views/home/index.html',
+				controller: 'HomeCtrl'
+			});
+	});
+
+angular.module('app').controller('HomeCtrl', function($scope, $mdDialog) {
 	$scope.name = 'Piyush Chauhan';
 	$scope.openMenu = function($mdOpenMenu, ev) {
     originatorEv = ev;
@@ -26,4 +38,11 @@ angular.module('app').controller('AppCtrl', function($scope, $mdDialog) {
   $scope.checkVoicemail = function() {
     // This never happens.
   };
+  
+  $scope.selected = [];
+  
+  $scope.desserts = [{
+	  name: 'First'
+  }, { name: 'Second' }];
+
 });
