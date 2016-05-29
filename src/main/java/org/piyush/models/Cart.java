@@ -36,7 +36,7 @@ public class Cart {
 		return this.cartItems;
 	}
 	
-	public List<CartItem> getCartProducts() {
+	public List<CartItem> getCartItems() {
 		return this.cartItems;
 	}
 	

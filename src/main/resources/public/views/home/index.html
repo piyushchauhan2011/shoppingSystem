@@ -39,28 +39,58 @@
 			<div flex="66" class="catalogue">
 				<h1>Catalogue</h1>
 				
-
-<!-- exact table from live demo -->
-<md-table-container>
-  <table md-table>
-    <thead md-head>
-      <tr md-row>
-        <th md-column><span>Dessert (100g serving)</span></th>
-      </tr>
-    </thead>
-    <tbody md-body>
-      <tr md-row ng-repeat="dessert in desserts">
-        <td md-cell>{{dessert.name}}</td>
-      </tr>
-    </tbody>
-  </table>
-</md-table-container>
-
+				<!-- exact table from live demo -->
+				<div layout="row" layout-wrap>
+					<md-card ng-repeat="product in products" flex="45" md-theme="default">
+					    <md-card-title>
+				          <md-card-title-text>
+				            <span class="md-headline">{{ product.title }} ({{ product.price }})</span>
+				            <span class="md-subhead">{{ product.description }}</span>
+				          </md-card-title-text>
+				        </md-card-title>
+				        <md-card-content layout="row" layout-align="space-between">
+				        	<img class="md-media-xl card-media" ng-cloak alt="product" src="http://robohash.org/product{{$index}}">
+				          	<md-card-actions layout="column">
+					            <md-button class="md-icon-button" aria-label="Favorite">
+					              <md-icon class="material-icons">add</md-icon>
+					              <md-tooltip>Add Product</md-tooltip>
+					            </md-button>
+				          </md-card-actions>
+			      	</md-card>
+				</div>
 			</div>
 			
-			<md-card flex="33">
+			<div flex="33">
 				<h1>Cart</h1>
-			</md-card>
+				
+				<md-card>
+					<md-table-container>
+					  <table md-table>
+					    <thead md-head>
+					      <tr md-row>
+					        <th md-column><span>Id</span></th>
+					        <th md-column><span>Price</span></th>
+					        <th md-column><span>Quantity</span></th>
+					        <th md-column><span>Actions</span>
+					      </tr>
+					    </thead>
+					    <tbody md-body>
+					      <tr md-row ng-repeat="cartItem in cart.cartItems">
+					        <td md-cell>{{cartItem.productId}}</td>
+					        <td md-cell>{{cartItem.price}}</td>
+					        <td md-cell>{{cartItem.quantity}}</td>
+					        <td md-cell>
+					        	<md-button class="md-icon-button">
+					        		<md-icon class="material-icons">remove</md-icon>
+					        		<md-tooltip>Remove product</md-tooltip>
+					        	</md-button>
+					        </td>
+					      </tr>
+					    </tbody>
+					  </table>
+					</md-table-container>
+				</md-card>
+			</div>
 		</div>
 	</md-content>
 </div>

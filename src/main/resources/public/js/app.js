@@ -12,7 +12,7 @@ angular.module('app')
 			});
 	});
 
-angular.module('app').controller('HomeCtrl', function($scope, $mdDialog) {
+angular.module('app').controller('HomeCtrl', function($scope, $mdDialog, $http) {
 	$scope.name = 'Piyush Chauhan';
 	$scope.openMenu = function($mdOpenMenu, ev) {
     originatorEv = ev;
@@ -40,9 +40,20 @@ angular.module('app').controller('HomeCtrl', function($scope, $mdDialog) {
   };
   
   $scope.selected = [];
+  $scope.cart = {};
+  $scope.products = [];
   
-  $scope.desserts = [{
-	  name: 'First'
-  }, { name: 'Second' }];
+  $http.get('/products')
+  	.then(function(res) {
+  		$scope.products = res.data;
+  	}).catch(function(err) {
+  	});
+  
+  $http.get('/carts/1')
+  	.then(function(res) {
+  		$scope.cart = res.data;
+  		console.log('cart: ', $scope.cart);
+  	}).catch(function(err) {
+  	})
 
 });

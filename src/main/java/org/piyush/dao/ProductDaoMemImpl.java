@@ -13,8 +13,8 @@ public class ProductDaoMemImpl implements ProductDao {
 	
 	public ProductDaoMemImpl(){
 		products = new ArrayList<Product>();
-		addProduct(new Product("Web Application Architecture","textbook","webapplication.jpg",79.95));
-		addProduct(new Product("Internet How to Program","textbook","wwwprogramming.jpg",109.95));
+		addProduct(new Product("Web Application Architecture","Web textbook","webapplication.jpg",79.95));
+		addProduct(new Product("Internet How to Program","Internet textbook","wwwprogramming.jpg",109.95));
 	}
 	@Override
 	public void addProduct(Product p) {
