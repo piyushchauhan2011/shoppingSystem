@@ -12,7 +12,7 @@ angular.module('app')
 			})
 			.state('login', {
 				url: '/login',
-				templateUrl: 'views/login/index.html',
+				templateUrl: 'views/home/login.html',
 				controller: 'LoginCtrl'
 			})
 			.state('ordersStatus', {
