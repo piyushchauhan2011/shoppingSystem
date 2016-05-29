@@ -13,6 +13,7 @@ public class DaoFactory {
 	private ProductDao pDao = null;
 	private CartItemDao ciDao = null;
 	private CartDao cDao = null;
+	private OrderDao oDao = null;
 	static Log log = LogFactory.getLog(DaoFactory.class);
 	String classname = this.getClass().getName();
 	private DaoFactory(){
@@ -98,32 +99,32 @@ public class DaoFactory {
 		}
 		return cDao;
 	}
-//	
-//	public ProductDao getOrderDao(){
-//		if (pDao == null){
-//			Properties properties = new Properties() ;
-//			try{
-//				properties.load(this.getClass().getResourceAsStream("/shoppingSystem.properties"));		
-//				String className = properties.getProperty("dao.ProductDaoName");
-//				if (className!=null){
-//					pDao = (ProductDao)Class.forName(className).newInstance();
-//					log.info("Using " + className + " to get ProductInfo...");
-//				}else{
-//					log.info("property not found, using default implementation");
-//					System.out.println("property not found, using default implementation");
-//					pDao = new ProductDaoMemImpl();
-//				}
-//			}catch (Exception e){ 
-//				log.info(e.getMessage());
-//				e.printStackTrace();
-//				pDao =  new ProductDaoMemImpl();
-//				System.out.println("Exception, using default implementation");
-//				return pDao;
-//			}
-//		}
-//		return pDao;
-//	}
-//	
+	
+	public OrderDao getOrderDao(){
+		if (oDao == null){
+			Properties properties = new Properties() ;
+			try{
+				properties.load(this.getClass().getResourceAsStream("/application.properties"));		
+				String className = properties.getProperty("dao.OrderDaoName");
+				if (className!=null){
+					oDao = (OrderDao)Class.forName(className).newInstance();
+					log.info("Using " + className + " to get OrderInfo...");
+				}else{
+					log.info("property not found, using default implementation");
+					System.out.println("property not found, using default implementation");
+					oDao = new OrderDaoMemImpl();
+				}
+			}catch (Exception e){ 
+				log.info(e.getMessage());
+				e.printStackTrace();
+				oDao =  new OrderDaoMemImpl();
+				System.out.println("Exception, using default implementation");
+				return oDao;
+			}
+		}
+		return oDao;
+	}
+	
 	public static void main(String[] argv){
 		DaoFactory df = DaoFactory.getInstance();
 		ProductDao pDao = df.getProductDao();

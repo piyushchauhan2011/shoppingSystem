@@ -7,6 +7,5 @@ public interface OrderDao {
 	public List<Order> getAllOrders();
 	public void addOrder(Order o);
 	public Order getOrderById(long orderId);
-	public void updateOrder(Order c);
 	public void deleteOrder(long orderId);	
 }
