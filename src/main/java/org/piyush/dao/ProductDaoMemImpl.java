@@ -2,23 +2,23 @@ package org.piyush.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.piyush.models.Product;
 
 public class ProductDaoMemImpl implements ProductDao {
 
 	private List<Product> products;
-	private int lastId = 0;
+	private final AtomicLong counter = new AtomicLong();
 	
 	public ProductDaoMemImpl(){
 		products = new ArrayList<Product>();
-		addProduct(new Product(1, "Web Application Architecture","textbook","webapplication.jpg",79.95));
-		addProduct(new Product(2, "Internet How to Program","textbook","wwwprogramming.jpg",109.95));
+		addProduct(new Product("Web Application Architecture","textbook","webapplication.jpg",79.95));
+		addProduct(new Product("Internet How to Program","textbook","wwwprogramming.jpg",109.95));
 	}
 	@Override
 	public void addProduct(Product p) {
-		lastId ++;
-		p.setProductId(lastId);
+		p.setProductId(counter.incrementAndGet());
 		products.add(p);
 	}
 
@@ -51,7 +51,7 @@ public class ProductDaoMemImpl implements ProductDao {
 		long prodId = p.getProductId();
 		for (int i = 0; i < products.size(); i++){
 			if (products.get(i).getProductId() == prodId){
-				products.set(i,p );
+				products.set(i, p);
 				return;
 			}
 		}
