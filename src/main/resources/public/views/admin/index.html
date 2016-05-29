@@ -1,6 +1,6 @@
 <div layout="row" layout-padding layout-margin>
 	
-	<div flex="66">
+	<div flex>
 		<h1>Orders</h1>
 		
 		<md-card>
@@ -9,20 +9,18 @@
 			    <thead md-head>
 			      <tr md-row>
 			        <th md-column><span>Id</span></th>
-			        <th md-column><span>Price</span></th>
-			        <th md-column><span>Quantity</span></th>
+			        <th md-column><span>Status</span></th>
 			        <th md-column><span>Actions</span>
 			      </tr>
 			    </thead>
 			    <tbody md-body>
-			      <tr md-row ng-repeat="cartItem in cart.cartItems">
-			        <td md-cell>{{cartItem.productId}}</td>
-			        <td md-cell>{{cartItem.price}}</td>
-			        <td md-cell>{{cartItem.quantity}}</td>
+			      <tr md-row ng-repeat="order in orders">
+			        <td md-cell>{{order.id}}</td>
+			        <td md-cell>{{order.status}}</td>
 			        <td md-cell>
-			        	<md-button class="md-icon-button">
-			        		<md-icon class="material-icons">remove</md-icon>
-			        		<md-tooltip>Remove product</md-tooltip>
+			        	<md-button class="md-icon-button" ui-sref="adminOrder({ id: order.id })">
+			        		<md-icon class="material-icons">pageview</md-icon>
+			        		<md-tooltip>View order</md-tooltip>
 			        	</md-button>
 			        </td>
 			      </tr>

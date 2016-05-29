@@ -1,0 +1,41 @@
+<div layout="row" layout-padding layout-margin>
+	
+	<div flex="66">
+		<h1>Order</h1>
+		
+		<md-card>
+			<md-table-container>
+			  <table md-table>
+			    <thead md-head>
+			      <tr md-row>
+			        <th md-column><span>Id</span></th>
+			        <th md-column><span>Title</span></th>
+			        <th md-column><span>Locations</span></th>
+			        <th md-column><span>Quantity</span></th>
+			        <th md-column><span>Actions</span>
+			      </tr>
+			    </thead>
+			    <tbody md-body>
+			      <tr md-row ng-repeat="cartItem in order.cartItems">
+			        <td md-cell>{{cartItem.id}}</td>
+			        <td md-cell>{{cartItem.product.title}}</td>
+			        <td md-cell>{{cartItem.product.locations}}</td>
+			        <td md-cell>{{cartItem.quantity}}</td>
+			        <td md-cell>
+			        	<md-button class="md-icon-button">
+			        		<md-icon class="material-icons">remove</md-icon>
+			        		<md-tooltip>Remove product</md-tooltip>
+			        	</md-button>
+			        </td>
+			      </tr>
+			    </tbody>
+			  </table>
+			</md-table-container>
+		</md-card>
+	</div>
+	
+	<div flex="33">
+		<h1>Package</h1>
+		
+	</div>
+</div>

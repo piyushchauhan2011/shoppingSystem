@@ -14,5 +14,10 @@ angular.module('app')
 				url: '/admin',
 				templateUrl: 'views/admin/index.html',
 				controller: 'AdminCtrl'
+			})
+			.state('adminOrder', {
+				url: '/admin/order/{id}',
+				templateUrl: 'views/admin/order.html',
+				controller: 'OrderCtrl'
 			});
 	});

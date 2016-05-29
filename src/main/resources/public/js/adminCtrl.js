@@ -1,7 +1,7 @@
 angular.module('app').controller('AdminCtrl', function($scope, $http) {
 	$scope.name = 'Admin';
 	
-	$scope.order = [];
+	$scope.orders = [];
 	  
 	  $http.get('/orders')
 	  	.then(function(res) {

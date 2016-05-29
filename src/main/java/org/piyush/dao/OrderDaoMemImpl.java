@@ -15,13 +15,19 @@ public class OrderDaoMemImpl implements OrderDao {
 	private CartDao cdao = DaoFactory.getInstance().getCartDao();
 	
 	public OrderDaoMemImpl(){
-		Cart cart = cdao.getCartById(1);
-		Order o = new Order();
-		o.setCart(cart);
-		o.setStatus("in-transit");
-		
 		orders = new ArrayList<Order>();
-		addOrder(o);
+		
+		Cart cart = cdao.getCartById(1);
+		Order o1 = new Order();
+		o1.setCart(cart);
+		o1.setStatus("shipped");
+		addOrder(o1);
+		
+		cart = cdao.getCartById(2);
+		Order o2 = new Order();
+		o2.setCart(cart);
+		o2.setStatus("received");
+		addOrder(o2);
 	}
 	
 	@Override
