@@ -5,16 +5,16 @@ angular.module('app')
 	});
 
 angular.module('app')
-	.controller('HeaderCtrl', function($scope, $mdDialog) {
+	.controller('HeaderCtrl', function($scope, $mdDialog, $state) {
 		$scope.name = 'Piyush Chauhan';
 		$scope.openMenu = function($mdOpenMenu, ev) {
 	    originatorEv = ev;
 	    $mdOpenMenu(ev);
 	  };
 	  $scope.notificationsEnabled = true;
-	  $scope.toggleNotifications = function() {
-	    $scope.notificationsEnabled = !$scope.notificationsEnabled;
-	    
+	  $scope.logout = function() {
+	    $state.go('login');
+	    $scope.name = 'Guest';
 	  };
 	  $scope.redial = function() {
 	    $mdDialog.show(
