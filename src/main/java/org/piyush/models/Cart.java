@@ -1,27 +1,47 @@
 package org.piyush.models;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cart {
-	private Map<Long, CartItem> carts;
+	private long id;
+	private List<CartItem> cartItems;
 
 	public Cart() {
-		carts = new HashMap<Long, CartItem>();
+		cartItems = new ArrayList<>();
 	}
 
-	public void addItem(Product p) {
-		long productId = p.getProductId();
-		CartItem ci = carts.get(productId);
-		if (ci == null) {
-			carts.put(productId, new CartItem(p, 1)); // add the new product
-		} else { // increase the quantity
-			ci.increaseQuantity();
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public CartItem cartItemPresent(long productId) {
+		for(CartItem ci: this.cartItems) {
+			if(ci.getProductId() == productId) return ci;
 		}
+		return null;
 	}
-
-	public Collection<CartItem> getItems() {
-		return carts.values();
+	
+	public List<CartItem> addProduct(long productId) {
+		CartItem cartItem = this.cartItemPresent(productId);
+		if(cartItem != null) {
+			cartItem.increaseQuantity();
+		} else {
+			this.cartItems.add(new CartItem(productId, 1));
+		}
+		return this.cartItems;
+	}
+	
+	public List<CartItem> getCartProducts() {
+		return this.cartItems;
+	}
+	
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", cartItems=" + cartItems + "]";
 	}
 }
