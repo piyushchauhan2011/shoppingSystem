@@ -1,6 +1,6 @@
 <md-toolbar>
 	<div class="md-toolbar-tools">
-		<h2>
+		<h2 ui-sref="home">
 			<span>Online Shopping System</span>
 		</h2>
 		<span flex></span>
@@ -14,9 +14,9 @@
 			<md-menu-content width="4">
 				<md-menu-item>
 					<md-button
-						ng-click="redial($event)">
+						ui-sref="ordersStatus">
 						<md-icon class="material-icons">dialpad</md-icon>
-						Track order
+						Track orders
 					</md-button>
 				</md-menu-item>
 

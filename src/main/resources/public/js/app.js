@@ -10,6 +10,21 @@ angular.module('app')
 				templateUrl: 'views/home/index.html',
 				controller: 'HomeCtrl'
 			})
+			.state('login', {
+				url: '/login',
+				templateUrl: 'views/login/index.html',
+				controller: 'LoginCtrl'
+			})
+			.state('ordersStatus', {
+				url: '/orders-status',
+				templateUrl: 'views/home/order-status.html',
+				controller: 'OrdersStatusCtrl'
+			})
+			.state('confirmOrder', {
+				url: '/order/{id}/confirm-order',
+				templateUrl: 'views/home/confirm-order.html',
+				controller: 'ConfirmOrderCtrl'
+			})
 			.state('admin', {
 				url: '/admin',
 				templateUrl: 'views/admin/index.html',

@@ -1,0 +1,45 @@
+<div layout="row" layout-padding layout-margin>
+	<div flex="33">
+		<h1>Delivery details</h1>
+		
+		<div  layout="row">
+		<md-input-container flex="100">
+			<label>Delivery Address</label>
+			<textarea ng-model="deliveryAddress" md-maxlength="150" rows="5"
+				md-select-on-focus></textarea>
+		</md-input-container>
+		</div>
+	</div>
+	
+	<div flex="66">
+		<h1>Confirm Order</h1>
+		
+		<md-card>
+			<md-table-container>
+			  <table md-table>
+			    <thead md-head>
+			      <tr md-row>
+			        <th md-column><span>Id</span></th>
+			        <th md-column><span>Product Id</span></th>
+			        <th md-column><span>Status</span></th>
+			      </tr>
+			    </thead>
+			    <tbody md-body>
+			      <tr md-row ng-repeat="cartItem in order.cart.cartItems">
+			        <td md-cell>{{cartItem.id}}</td>
+			        <td md-cell>{{cartItem.productId}}</td>
+			        <td md-cell>{{cartItem.quantity}}</td>
+			      </tr>
+			    </tbody>
+			  </table>
+			</md-table-container>
+		</md-card>
+		
+		<div layout="row" layout-align="center">
+			<md-button class="md-primary" ui-sref="ordersStatus">
+				Confirm Order
+				<md-icon class="material-icons">checkout</md-icon>
+			</md-button>
+		</div>
+	</div>
+</div>
