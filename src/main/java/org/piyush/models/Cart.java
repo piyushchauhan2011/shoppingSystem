@@ -19,19 +19,19 @@ public class Cart {
 		this.id = id;
 	}
 
-	public CartItem cartItemPresent(long productId) {
+	public CartItem productPresent(Product product) {
 		for(CartItem ci: this.cartItems) {
-			if(ci.getProductId() == productId) return ci;
+			if(ci.getProduct().getId() == product.getId()) return ci;
 		}
 		return null;
 	}
 	
-	public List<CartItem> addProduct(long productId) {
-		CartItem cartItem = this.cartItemPresent(productId);
+	public List<CartItem> addProduct(Product product) {
+		CartItem cartItem = this.productPresent(product);
 		if(cartItem != null) {
 			cartItem.increaseQuantity();
 		} else {
-			this.cartItems.add(new CartItem(productId, 1));
+			this.cartItems.add(new CartItem(product, 1));
 		}
 		return this.cartItems;
 	}

@@ -1,5 +1,6 @@
 package org.piyush.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //import javax.validation.constraints.NotNull;
@@ -20,7 +21,7 @@ public class Product {
 	private List<Warehouse> warehouses;
 	
 	public Product() {
-		
+		this.warehouses = new ArrayList<>();
 	}
 
 	public Product(String title, String description, String imageUrl, double price) {
@@ -28,6 +29,7 @@ public class Product {
 		this.description = description;
 		this.imageUrl = imageUrl;
 		this.price = price;
+		this.warehouses = new ArrayList<>();
 	}
 
 	public long getId() {

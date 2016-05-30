@@ -2,16 +2,16 @@ package org.piyush.models;
 
 public class CartItem {
 	private long id;
-	private long productId;
-	private long cartId;
 	private int quantity;
+	
+	private Product product;
 	
 	public CartItem() {
 		
 	}
 	
-	public CartItem(long productId, int quantity) {
-		this.productId = productId;
+	public CartItem(Product product, int quantity) {
+		this.product = product;
 		this.quantity = quantity;
 	}
 
@@ -23,22 +23,6 @@ public class CartItem {
 		this.id = id;
 	}
 
-	public long getProductId() {
-		return productId;
-	}
-
-	public void setProductId(long productId) {
-		this.productId = productId;
-	}
-
-	public long getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(long cartId) {
-		this.cartId = cartId;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
@@ -47,8 +31,25 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	public void increaseQuantity() {
 		this.quantity += 1;
+	}
+	
+	public void decreaseQuantity() {
+		this.quantity -= 1;
+	}
+
+	@Override
+	public String toString() {
+		return "CartItem [id=" + id + ", quantity=" + quantity + ", product=" + product + "]";
 	}
 
 }
