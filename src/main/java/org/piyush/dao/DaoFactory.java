@@ -5,12 +5,9 @@ import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.piyush.models.*;
-
 public class DaoFactory {
 
 	private static DaoFactory df;
-	private ProductDao pDao = null;
 	private CartItemDao ciDao = null;
 	private CartDao cDao = null;
 	private OrderDao oDao = null;
@@ -23,31 +20,6 @@ public class DaoFactory {
 		if (df == null)
 			df = new DaoFactory();
 		return df;
-	}
-	
-	public ProductDao getProductDao(){
-		if (pDao == null){
-			Properties properties = new Properties() ;
-			try{
-				properties.load(this.getClass().getResourceAsStream("/application.properties"));		
-				String className = properties.getProperty("dao.ProductDaoName");
-				if (className!=null){
-					pDao = (ProductDao)Class.forName(className).newInstance();
-					log.info("Using " + className + " to get ProductInfo...");
-				}else{
-					log.info("property not found, using default implementation");
-					System.out.println("property not found, using default implementation");
-					pDao = new ProductDaoMemImpl();
-				}
-			}catch (Exception e){ 
-				log.info(e.getMessage());
-				e.printStackTrace();
-				pDao =  new ProductDaoMemImpl();
-				System.out.println("Exception, using default implementation");
-				return pDao;
-			}
-		}
-		return pDao;
 	}
 	
 	public CartItemDao getCartItemDao(){
@@ -123,23 +95,6 @@ public class DaoFactory {
 			}
 		}
 		return oDao;
-	}
-	
-	public static void main(String[] argv){
-		DaoFactory df = DaoFactory.getInstance();
-		ProductDao pDao = df.getProductDao();
-		Product newBook = new Product("The Children Act","Ian MacEwan's new novel", null, 17.64);
-		pDao.addProduct(newBook);
-		
-		log.info(pDao.getAllProducts());
-		
-		Product p = pDao.getProductById(3);
-		
-		log.info(p);
-		
-		newBook.setPrice(29.95);
-		pDao.updateProduct(newBook);
-		log.info(p);
 	}
 }
 

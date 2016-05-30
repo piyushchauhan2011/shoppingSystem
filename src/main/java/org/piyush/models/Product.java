@@ -1,11 +1,13 @@
 package org.piyush.models;
 
+import java.util.List;
+
 //import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Digits;
 
 public class Product {
 	
-	private long productId;
+	private long id;
 	
 	private String title;
 	
@@ -14,6 +16,8 @@ public class Product {
 	private String imageUrl;
 	
 	private double price;
+	
+	private List<Warehouse> warehouses;
 	
 	public Product() {
 		
@@ -26,12 +30,12 @@ public class Product {
 		this.price = price;
 	}
 
-	public long getProductId() {
-		return productId;
+	public long getId() {
+		return id;
 	}
 
-	public void setProductId(long productId) {
-		this.productId = productId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -66,9 +70,17 @@ public class Product {
 		this.price = price;
 	}
 
+	public List<Warehouse> getWarehouses() {
+		return warehouses;
+	}
+
+	public void setWarehouses(List<Warehouse> warehouses) {
+		this.warehouses = warehouses;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", title=" + title + ", description=" + description + ", imageUrl="
+		return "Product [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl="
 				+ imageUrl + ", price=" + price + "]";
 	}
 }

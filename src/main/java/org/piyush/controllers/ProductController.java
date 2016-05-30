@@ -5,22 +5,25 @@ import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.piyush.dao.DaoFactory;
-
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.piyush.models.Product;
-import org.piyush.dao.ProductDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.piyush.dao.ProductRepository;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-	
-	private ProductDao pdao = DaoFactory.getInstance().getProductDao();
+	protected final Logger log = LoggerFactory.getLogger(getClass());
+
+    @Autowired
+    private ProductRepository pdao;
 	
 	@Context
 	UriInfo uriInfo; // like an instance variable definition
@@ -37,14 +40,12 @@ public class ProductController {
     
     @RequestMapping(method=RequestMethod.POST)
     public Product create(@RequestBody Product product) {
-    	pdao.addProduct(product);
-    	return product;
+    	return pdao.insertProduct(product);
     }
     
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public Product update(@PathVariable("id") long id, @RequestBody Product product) {
-    	product.setProductId(id);
-    	pdao.updateProduct(product);
+    	product = pdao.updateProduct(id, product);
     	return product;
     }
     

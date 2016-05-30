@@ -3,14 +3,14 @@ package org.piyush.models;
 public class Warehouse {
 	private long id;
 	private long productId;
-	private int location;
+	private String location;
 	private long quantity;
 	
 	public Warehouse() {
 		
 	}
 	
-	public Warehouse(long productId, int location, long quantity) {
+	public Warehouse(long productId, String location, long quantity) {
 		super();
 		this.productId = productId;
 		this.location = location;
@@ -28,10 +28,10 @@ public class Warehouse {
 	public void setProductId(long productId) {
 		this.productId = productId;
 	}
-	public int getLocation() {
+	public String getLocation() {
 		return location;
 	}
-	public void setLocation(int location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 	public long getQuantity() {
