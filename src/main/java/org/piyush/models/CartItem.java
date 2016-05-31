@@ -38,6 +38,17 @@ public class CartItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	
+	public boolean checkAvailability() {
+		long totalQty = 0;
+		for (Warehouse warehouse : this.product.getWarehouses()) {
+			totalQty += warehouse.getQuantity();
+		}
+		if (totalQty < this.quantity)
+			return false;
+		else
+			return true;
+	}
 
 	public void increaseQuantity() {
 		this.quantity += 1;

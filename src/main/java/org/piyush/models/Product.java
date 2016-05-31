@@ -7,19 +7,19 @@ import java.util.List;
 //import javax.validation.constraints.Digits;
 
 public class Product {
-	
+
 	private long id;
-	
+
 	private String title;
-	
+
 	private String description;
-	
+
 	private String imageUrl;
-	
+
 	private double price;
-	
+
 	private List<Warehouse> warehouses;
-	
+
 	public Product() {
 		this.warehouses = new ArrayList<>();
 	}
@@ -82,7 +82,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl="
-				+ imageUrl + ", price=" + price + "]";
+		return "Product [id=" + id + ", title=" + title + ", description=" + description + ", imageUrl=" + imageUrl
+				+ ", price=" + price + "]";
 	}
 }
