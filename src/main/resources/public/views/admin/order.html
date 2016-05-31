@@ -16,15 +16,15 @@
 			      </tr>
 			    </thead>
 			    <tbody md-body>
-			      <tr md-row ng-repeat="cartItem in order.cartItems">
+			      <tr md-row ng-repeat="cartItem in order.cart.cartItems">
 			        <td md-cell>{{cartItem.id}}</td>
 			        <td md-cell>{{cartItem.product.title}}</td>
-			        <td md-cell>{{cartItem.product.locations}}</td>
+			        <td md-cell>{{cartItem.product.warehouses[0].location}}</td>
 			        <td md-cell>{{cartItem.quantity}}</td>
 			        <td md-cell>
-			        	<md-button class="md-icon-button">
-			        		<md-icon class="material-icons">remove</md-icon>
-			        		<md-tooltip>Remove product</md-tooltip>
+			        	<md-button class="md-icon-button" ng-click="addPackageItem(cartItem)">
+			        		<md-icon class="material-icons">add</md-icon>
+			        		<md-tooltip>Add product to package</md-tooltip>
 			        	</md-button>
 			        </td>
 			      </tr>
@@ -36,6 +36,30 @@
 	
 	<div flex="33">
 		<h1>Package</h1>
-		
+		<md-card>
+			<md-table-container>
+			  <table md-table>
+			    <thead md-head>
+			      <tr md-row>
+			        <th md-column><span>Title</span></th>
+			        <th md-column><span>Quantity</span></th>
+			        <th md-column><span>Actions</span>
+			      </tr>
+			    </thead>
+			    <tbody md-body>
+			      <tr md-row ng-repeat="packageItem in packag.packageItems">
+			        <td md-cell>{{packageItem.title}}</td>
+			        <td md-cell>{{packageItem.quantity}}</td>
+			        <td md-cell>
+			        	<md-button class="md-icon-button" ng-click="removePackageItem(packageItem)">
+			        		<md-icon class="material-icons">remove</md-icon>
+			        		<md-tooltip>Remove product</md-tooltip>
+			        	</md-button>
+			        </td>
+			      </tr>
+			    </tbody>
+			  </table>
+			</md-table-container>
+		</md-card>
 	</div>
 </div>

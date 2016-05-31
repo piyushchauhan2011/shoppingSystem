@@ -17,17 +17,17 @@
 		<md-card>
 			<md-table-container>
 			  <table md-table>
-			    <thead md-head>
+			    <thead md-head md-order="quantity">
 			      <tr md-row>
-			        <th md-column><span>Id</span></th>
-			        <th md-column><span>Product Id</span></th>
-			        <th md-column><span>Status</span></th>
+			        <th md-column md-numeric><span>Id</span></th>
+			        <th md-column md-numeric><span>Product Id</span></th>
+			        <th md-column md-numeric><span>Quantity</span></th>
 			      </tr>
 			    </thead>
 			    <tbody md-body>
-			      <tr md-row ng-repeat="cartItem in order.cart.cartItems">
+			      <tr md-row ng-repeat="cartItem in cart.cartItems">
 			        <td md-cell>{{cartItem.id}}</td>
-			        <td md-cell>{{cartItem.productId}}</td>
+			        <td md-cell>{{cartItem.product.id}}</td>
 			        <td md-cell>{{cartItem.quantity}}</td>
 			      </tr>
 			    </tbody>
@@ -36,7 +36,7 @@
 		</md-card>
 		
 		<div layout="row" layout-align="center">
-			<md-button class="md-primary" ui-sref="ordersStatus">
+			<md-button class="md-primary" ng-click="confirmOrder()">
 				Confirm Order
 				<md-icon class="material-icons">checkout</md-icon>
 			</md-button>

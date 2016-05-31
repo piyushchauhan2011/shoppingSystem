@@ -2,20 +2,12 @@ package org.piyush.models;
 
 public class Order {
 	private long id;
-	private long cartId;
+	private Cart cart;
 	private long userId;
 	private String status;
 	
 	public Order() {
 		
-	}
-
-	public Order(long id, long cartId, long userId, String status) {
-		super();
-		this.id = id;
-		this.cartId = cartId;
-		this.userId = userId;
-		this.status = status;
 	}
 
 	public long getId() {
@@ -26,12 +18,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public long getCartId() {
-		return cartId;
+	public Cart getCart() {
+		return cart;
 	}
 
-	public void setCartId(long cartId) {
-		this.cartId = cartId;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	public long getUserId() {
@@ -52,7 +44,8 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", cartId=" + cartId + ", userId=" + userId + ", status=" + status + "]";
+		return "Order [id=" + id + ", cart=" + cart + ", userId=" + userId + ", status=" + status + "]";
 	}
+	
 	
 }

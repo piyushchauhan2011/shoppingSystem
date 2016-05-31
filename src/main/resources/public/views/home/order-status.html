@@ -20,7 +20,7 @@
 			        <td md-cell>{{order.trackingNumber}}</td>
 			        <td md-cell>{{order.status}}</td>
 			        <td md-cell>
-			        	<md-button class="md-icon-button">
+			        	<md-button class="md-icon-button" ui-sref="adminOrder({ id: order.id })">
 			        		<md-icon class="material-icons">pageview</md-icon>
 			        		<md-tooltip>View Order</md-tooltip>
 			        	</md-button>
