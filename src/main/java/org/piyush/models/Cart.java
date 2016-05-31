@@ -18,28 +18,26 @@ public class Cart {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public CartItem productPresent(Product product) {
-		for(CartItem ci: this.cartItems) {
-			if(ci.getProduct().getId() == product.getId()) return ci;
+	
+	public CartItem isPresent(Product product) {
+		for(CartItem cartItem: this.cartItems) {
+			if(cartItem.getProduct().getId() == product.getId()) return cartItem;
 		}
 		return null;
 	}
 	
-	public List<CartItem> addProduct(Product product) {
-		CartItem cartItem = this.productPresent(product);
-		if(cartItem != null) {
-			cartItem.increaseQuantity();
-		} else {
-			this.cartItems.add(new CartItem(product, 1));
-		}
-		return this.cartItems;
+	public void insertCartItem(CartItem cartItem) {
+		this.cartItems.add(cartItem);
 	}
 	
 	public List<CartItem> getCartItems() {
-		return this.cartItems;
+		return cartItems;
 	}
-	
+
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+
 	@Override
 	public String toString() {
 		return "Cart [id=" + id + ", cartItems=" + cartItems + "]";

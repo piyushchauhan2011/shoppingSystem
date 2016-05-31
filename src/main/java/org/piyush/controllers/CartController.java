@@ -7,6 +7,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,9 +29,20 @@ public class CartController {
 	@Context
 	UriInfo uriInfo; // like an instance variable definition
 
+    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+    public Cart index(@PathVariable("id") long id) {
+        return cdao.getCartById(id);
+    }
+    
     @RequestMapping(value="/{id}/products", method=RequestMethod.GET)
-    public List<Product> index(@PathVariable("id") long id) {
+    public List<Product> cartProducts(@PathVariable("id") long id) {
         return cdao.getCartProducts(id);
+    }
+    
+    @RequestMapping(value="/{id}/products", method=RequestMethod.PUT)
+    public Cart index(@PathVariable("id") long id, @RequestBody Product product) {
+    	Cart c = cdao.getCartById(id);
+        return cdao.insertProduct(c, product);
     }
     
     @RequestMapping(value="", method=RequestMethod.POST)
