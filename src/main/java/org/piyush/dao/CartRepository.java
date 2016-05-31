@@ -120,11 +120,7 @@ public class CartRepository {
 		if (ci != null) {
 			// Update the quantity
 			ci.increaseQuantity();
-			if (ci.checkAvailability()) {
-				this.jdbc.update("update cart_items set quantity = ? where id = ?", ci.getQuantity(), ci.getId());
-			} else {
-				ci.decreaseQuantity();
-			}
+			this.jdbc.update("update cart_items set quantity = ? where id = ?", ci.getQuantity(), ci.getId());
 		} else {
 			// Insert as a new cartItem
 			GeneratedKeyHolder holder = new GeneratedKeyHolder();

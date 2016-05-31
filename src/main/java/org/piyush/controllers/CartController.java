@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.piyush.models.Cart;
+import org.piyush.models.Order;
 import org.piyush.models.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.piyush.dao.CartRepository;
+import org.piyush.dao.OrderRepository;
 
 @RestController
 @RequestMapping("/carts")
@@ -25,6 +27,9 @@ public class CartController {
 
     @Autowired
     private CartRepository cdao;
+    
+    @Autowired
+    private OrderRepository odao;
 	
 	@Context
 	UriInfo uriInfo; // like an instance variable definition
@@ -43,6 +48,13 @@ public class CartController {
     public Cart index(@PathVariable("id") long id, @RequestBody Product product) {
     	Cart c = cdao.getCartById(id);
         return cdao.insertProduct(c, product);
+    }
+    
+    @RequestMapping(value="/{id}/checkout", method=RequestMethod.GET)
+    public Order checkout(@PathVariable("id") long id) {
+    	Cart c = cdao.getCartById(id);
+    	Order o = odao.insertOrder(c, "partially-shipped", "Unit 11");
+        return o;
     }
     
     @RequestMapping(value="", method=RequestMethod.POST)

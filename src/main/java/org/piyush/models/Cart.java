@@ -37,6 +37,14 @@ public class Cart {
 	public void setCartItems(List<CartItem> cartItems) {
 		this.cartItems = cartItems;
 	}
+	
+	public boolean isValid() {
+		boolean isValid = true;
+		for(CartItem ci: this.cartItems) {
+			isValid &= ci.checkAvailability();
+		}
+		return isValid;
+	}
 
 	@Override
 	public String toString() {
