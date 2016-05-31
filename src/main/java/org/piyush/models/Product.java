@@ -18,7 +18,7 @@ public class Product {
 
 	private double price;
 
-	private List<Warehouse> warehouses;
+	private List<Warehouse> warehouses = new ArrayList<>();
 
 	public Product() {
 		this.warehouses = new ArrayList<>();

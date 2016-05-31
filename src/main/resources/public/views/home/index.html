@@ -14,7 +14,7 @@
 		        <md-card-content layout="row" layout-align="space-between">
 		        	<img class="md-media-xl card-media" ng-cloak alt="product" src="http://robohash.org/product{{$index}}">
 		          	<md-card-actions layout="column">
-			            <md-button class="md-icon-button md-fab md-warn md-raised" aria-label="Favorite">
+			            <md-button ng-click="addProduct(product)" class="md-icon-button md-fab md-warn md-raised" aria-label="Favorite">
 			              <md-icon class="material-icons">add</md-icon>
 			              <md-tooltip>Add Product</md-tooltip>
 			            </md-button>
@@ -39,11 +39,11 @@
 			    </thead>
 			    <tbody md-body>
 			      <tr md-row ng-repeat="cartItem in cart.cartItems">
-			        <td md-cell>{{cartItem.productId}}</td>
-			        <td md-cell>{{cartItem.price}}</td>
+			        <td md-cell>{{cartItem.id}}</td>
+			        <td md-cell>{{cartItem.product.price}}</td>
 			        <td md-cell>{{cartItem.quantity}}</td>
 			        <td md-cell>
-			        	<md-button class="md-icon-button">
+			        	<md-button class="md-icon-button" ng-click="removeProduct(cartItem)">
 			        		<md-icon class="material-icons">remove</md-icon>
 			        		<md-tooltip>Remove product</md-tooltip>
 			        	</md-button>
@@ -55,7 +55,7 @@
 		</md-card>
 		
 		<div layout="row" layout-align="center">
-			<md-button class="md-primary" ui-sref="confirmOrder({ id: 1 })">
+			<md-button class="md-primary" ng-click="checkout()">
 				Checkout
 				<md-icon class="material-icons">checkout</md-icon>
 			</md-button>

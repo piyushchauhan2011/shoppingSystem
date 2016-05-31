@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.piyush.models.Cart;
 import org.piyush.models.Order;
 import org.piyush.models.Product;
+import org.piyush.models.Success;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.piyush.dao.CartRepository;
@@ -50,11 +51,25 @@ public class CartController {
         return cdao.insertProduct(c, product);
     }
     
+    @RequestMapping(value="/{id}/products/{cartItemId}", method=RequestMethod.DELETE)
+    public Cart index(
+    		@PathVariable("id") long id,
+    		@PathVariable("cartItemId") long cartItemId) {
+    	Cart c = cdao.getCartById(id);
+        return cdao.deleteCartItem(c, cartItemId);
+    }
+    
     @RequestMapping(value="/{id}/checkout", method=RequestMethod.GET)
-    public Order checkout(@PathVariable("id") long id) {
+    public Success checkout(@PathVariable("id") long id) {
+    	Cart c = cdao.getCartById(id);
+    	return new Success(c.isValid());
+    }
+    
+    @RequestMapping(value="/{id}/confirm", method=RequestMethod.GET)
+    public Order confirm(@PathVariable("id") long id) {
     	Cart c = cdao.getCartById(id);
     	Order o = odao.insertOrder(c, "partially-shipped", "Unit 11");
-        return o;
+    	return o;
     }
     
     @RequestMapping(value="", method=RequestMethod.POST)

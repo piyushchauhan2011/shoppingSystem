@@ -80,7 +80,7 @@ public class CartRepository {
 				cartItemMapper, id);
 		
 		List<Long> productIds = cartItems.stream().map((CartItem ci) -> ci.getProduct().getId()).collect(Collectors.toList());
-
+		productIds.add(-1L);
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
 		parameters.addValue("productIds", productIds);
 
@@ -114,7 +114,20 @@ public class CartRepository {
 		ci.setProduct(product);
 		return ci;
 	}
-
+	
+	public Cart deleteCartItem(Cart c, long cartItemId) {
+		CartItem ci = c.findCartItemById(cartItemId);
+		System.out.println(ci);
+		if (ci != null) {
+			// Update the quantity
+			ci.decreaseQuantity();
+			this.jdbc.update("update cart_items set quantity = ? where id = ?", ci.getQuantity(), ci.getId());
+		}
+		
+		c.insertCartItem(ci);
+		return c;
+	}
+	
 	public Cart insertProduct(Cart c, Product product) {
 		CartItem ci = c.isPresent(product);
 		if (ci != null) {

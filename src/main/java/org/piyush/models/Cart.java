@@ -27,7 +27,27 @@ public class Cart {
 	}
 	
 	public void insertCartItem(CartItem cartItem) {
-		this.cartItems.add(cartItem);
+		CartItem c = null;
+		for(CartItem tmp: this.cartItems) {
+			if (tmp.getId() == cartItem.getId()) {
+				c = tmp;
+				break;
+			}
+		}
+		
+		if(c == null) this.cartItems.add(cartItem);
+		else c = cartItem;
+	}
+	
+	public CartItem findCartItemById(long cartItemId) {
+		CartItem c = null;
+		for(CartItem cartItem: this.cartItems) {
+			if(cartItem.getId() == cartItemId) {
+				c = cartItem;
+				break;
+			}
+		}
+		return c;
 	}
 	
 	public List<CartItem> getCartItems() {
